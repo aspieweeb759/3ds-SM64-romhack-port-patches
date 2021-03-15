@@ -1,0 +1,25 @@
+Open MSYS2 64bit version
+
+pacman -S 3ds-dev git make python3 mingw-w64-x86_64-gcc unzip --noconfirm
+
+wget https://github.com/3DSGuy/Project_CTR/releases/download/makerom-v0.17/makerom-v0.17-win_x86_64.zip
+
+unzip -d /opt/devkitpro/tools/bin/ makerom-v0.17-win_x86_64.zip
+
+git clone -b "branch_name" https://github.com/jesusyoshi54/sm64ex-alo.git
+
+Replace branch_name with the branch your downloading. 
+Example: -b GreenStars
+
+cd sm64ex-alo
+
+cp /c/temp/baserom.us.z64/
+
+Or just copy the sm64 rom into the repository manually
+
+export PATH="$PATH:/opt/devkitpro/tools/bin" && echo "OK!"
+export DEVKITPRO=/opt/devkitpro && echo "OK!"
+export DEVKITARM=/opt/devkitpro/devkitARM && echo "OK!"
+export DEVKITPPC=/opt/devkitpro/devkitPPC && echo "OK!"
+
+make clean && make -j4 TARGET_N64=0 TARGET_ARCH=native WINDOWS_BUILD=1 TARGET_N3DS=1 RM2C=1
